@@ -4,5 +4,11 @@
   },
   "scripts": {
     "test": "jest"
+  },
+  "jest": {
+    "verbose": true,
+    "watchPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
   }
 }
