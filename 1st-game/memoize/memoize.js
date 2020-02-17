@@ -20,25 +20,12 @@
 function memoize(func) {
   const memo = new Map();
   return function (args) {
-    if (!Array.isArray(args) && typeof args !== 'object' && args !== null) {
-      if (memo[args]) {
-        return memo[args]
-      } else {
-        return memo[args] = func(args);
-      }
-    } else if (Array.isArray(args) && args !== null) {
-      let key = JSON.stringify(args)
-      if (memo[key]) {
-        return memo[key];
-      } else {
-        return memo[key] = func(args);
-      }
-    } else if (!Array.isArray(args) && typeof args === 'object' && args !== null) {
-      let key = JSON.stringify(args)
+    if (args !== null) {
+      const key = JSON.stringify(args)
       if (memo[key]) {
         return memo[key]
       } else {
-        return memo[key] = func(args)
+        return memo[key] = func(args);
       }
     }
   }
