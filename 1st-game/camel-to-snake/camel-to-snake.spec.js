@@ -12,7 +12,7 @@ describe('camelToSnake => переводит camelCase -> в snake_case', () => 
          import {niceFunction} from './niceFunction/niceFunction.component.ts;
          export class GreatComponent {}`,
       `import {Cool_component} from './cool_component/Cool_component.component.ts;
-          import {nice_function} from './nice_function/nice_function.component.ts;
+         import {nice_function} from './nice_function/nice_function.component.ts;
          export class Great_component {}`,
     ],
   ])('Превращает %s => в %s', (str, result) => {

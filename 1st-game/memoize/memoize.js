@@ -16,6 +16,32 @@
  * memoizedCounter(4) => 4*4
  * Если передаваемый параметр = объект, сравнение должно проходить по значению, а не по ссылке
  */
-function memoize(func) {}
+
+function memoize(func) {
+  const memo = new Map();
+  return function (args) {
+    if (!Array.isArray(args) && typeof args !== 'object' && args !== null) {
+      if (memo[args]) {
+        return memo[args]
+      } else {
+        return memo[args] = func(args);
+      }
+    } else if (Array.isArray(args) && args !== null) {
+      let key = JSON.stringify(args)
+      if (memo[key]) {
+        return memo[key];
+      } else {
+        return memo[key] = func(args);
+      }
+    } else if (!Array.isArray(args) && typeof args === 'object' && args !== null) {
+      let key = JSON.stringify(args)
+      if (memo[key]) {
+        return memo[key]
+      } else {
+        return memo[key] = func(args)
+      }
+    }
+  }
+}
 
 module.exports = memoize;
